@@ -1,13 +1,19 @@
 django-ajax-toolkit
 ===================
 
+Dependencies
+-------------
+
+* simplejson
+
+
 Returning JSON in views
 -----------------------
 
 JsonResponse
 ~~~~~~~~~~~~
 If you want to extend your views to work with ajax you may choose to return json data in your resposne.
-To make this easier you can use ``JsonResposne`` found in the ``ajax-toolkit.http`` package::
+To make this easier you can use ``JsonResposne`` found in ``ajax-toolkit.http``::
 
     from ajax-toolkit.http import JsonResponse
 
