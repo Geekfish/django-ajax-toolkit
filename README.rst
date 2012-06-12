@@ -1,8 +1,7 @@
 django-ajax-toolkit
 ===================
 
-Dependencies
--------------
+**Dependencies**
 
 * simplejson
 
