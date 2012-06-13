@@ -8,8 +8,8 @@ from django.contrib.messages.middleware import MessageMiddleware
 
 from hamcrest import *
 
-from ajax-toolkit.middleware import AjaxMiddleware
-from ajax-toolkit.http import JsonResponse
+from ajaxtoolkit.middleware import AjaxMiddleware
+from ajaxtoolkit.http import JsonResponse
 
 class JsonResponseTests(TestCase):
 
