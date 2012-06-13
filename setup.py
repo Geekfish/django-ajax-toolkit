@@ -10,7 +10,7 @@ setup(name='django-ajax-toolkit',
       keywords="Ajax utilities for Django",
       license='BSD',
       platforms=['linux'],
-      packages='ajaxtoolkit'),
+      packages=('ajaxtoolkit'),
       include_package_data=True,
       install_requires=[
           'simplejson==2.5.2',
