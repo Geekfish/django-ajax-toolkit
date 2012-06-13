@@ -1,4 +1,4 @@
-from ajax-toolkit.http import JsonResponse
+from ajaxtoolkit.http import JsonResponse
 
 from django.contrib import messages
 

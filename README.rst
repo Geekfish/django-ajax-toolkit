@@ -12,9 +12,9 @@ Returning JSON in views
 JsonResponse
 ~~~~~~~~~~~~
 If you want to extend your views to work with ajax you may choose to return json data in your resposne.
-To make this easier you can use ``JsonResposne`` found in ``ajax-toolkit.http``::
+To make this easier you can use ``JsonResposne`` found in ``ajaxtoolkit.http``::
 
-    from ajax-toolkit.http import JsonResponse
+    from ajaxtoolkit.http import JsonResponse
 
     class MyView(TemplateView):
 
@@ -28,11 +28,11 @@ This will set the correct mimetype (``application/json``) and serialise your con
 
 Ajax Middleware
 ~~~~~~~~~~~~~~~
-If you're using Django's messages framework, you can also add ``ajax-toolkit.middleware.AjaxMiddleware`` in your
+If you're using Django's messages framework, you can also add ``ajaxtoolkit.middleware.AjaxMiddleware`` in your
 middlewares. This will inject all messages generated in your request into your ``JsonResponse`` object::
 
     from django.contrib import messages
-    from ajax-toolkit.http import JsonResponse
+    from ajaxtoolkit.http import JsonResponse
 
     class MyView(TemplateView):
 
