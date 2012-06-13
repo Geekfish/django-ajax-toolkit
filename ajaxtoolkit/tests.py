@@ -1,6 +1,7 @@
 # coding=UTF-8
 
 from django.test import TestCase
+from django.http import HttpRequest
 
 from django.contrib import messages
 from django.contrib.sessions.middleware import SessionMiddleware
