@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(name='django-ajax-toolkit',
-      version='',
+      version='0.1',
       url='https://github.com/Geekfish/django-ajax-toolkit',
       author="Eleni Lixourioti",
       author_email="contact@eleni.co",
-      description="",
+      description="Ajax goodies for django projects.",
       long_description=open('README.rst').read(),
-      keywords="Ajax utilities for Django",
+      keywords="django, ajax, utilities, http",
       license='BSD',
       platforms=['linux'],
       packages=('ajaxtoolkit',),
