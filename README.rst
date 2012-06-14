@@ -29,7 +29,7 @@ This will set the correct mimetype (``application/json``) and serialise your con
 Ajax Middleware
 ~~~~~~~~~~~~~~~
 If you're using Django's messages framework, you can also add ``ajaxtoolkit.middleware.AjaxMiddleware`` in your
-middlewares::
+middleware.
         
 
 This will inject all messages generated in your request into your ``JsonResponse`` object::
