@@ -41,3 +41,5 @@ class AjaxMiddlewareTests(TestCase):
 
         assert_that(processed_response.dict_content["django_messages"][0], has_entry("message", equal_to(message)))
 
+
+from ajaxtoolkit.plugins.tastypie.tests import *

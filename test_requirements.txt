@@ -2,3 +2,4 @@ Django==1.4
 PyHamcrest==1.6
 simplejson==2.6.0
 requests==0.13.2
+tastypie==0.9.11
