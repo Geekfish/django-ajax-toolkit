@@ -11,7 +11,7 @@ Returning JSON in views
 
 JsonResponse
 ~~~~~~~~~~~~
-If you want to extend your views to work with ajax you may choose to return json data in your resposne.
+If you want to extend your views to work with ajax you may choose to return json data in your response.
 To make this easier you can use ``JsonResponse`` found in ``ajaxtoolkit.http``::
 
     from ajaxtoolkit.http import JsonResponse
