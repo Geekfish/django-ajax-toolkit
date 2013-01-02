@@ -9,3 +9,5 @@ docs
 
 #PyCharm
 *.idea
+
+.DS_Store
