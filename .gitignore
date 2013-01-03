@@ -6,3 +6,6 @@ local_settings.py
 dist
 docs.zip
 docs
+
+.idea
+.DS_Store
