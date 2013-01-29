@@ -42,7 +42,7 @@ The usage is the same as with ``JsonResponse``::
 
 
 Ajax Middleware
-----------------
+---------------
 If you're using Django's messages framework, you can also add ``ajaxtoolkit.middleware.AjaxMiddleware`` in your
 middleware.
         
