@@ -80,7 +80,7 @@ This would be rendered as the following::
 
 
 Bypassing the message middleware
-********************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you want to send an http response without attaching messages you can do that
 by setting the ``message_support`` attribute of the response object::
