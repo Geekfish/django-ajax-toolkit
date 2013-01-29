@@ -7,8 +7,8 @@ django-ajax-toolkit
 * msgpack-python
 
 
-Returning JSON in views
------------------------
+Returning data objects in views
+-------------------------------
 
 JsonResponse
 ~~~~~~~~~~~~
