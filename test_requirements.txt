@@ -1,3 +1,4 @@
 Django==1.4
 PyHamcrest==1.6
-simplejson==2.5.2
+simplejson==2.6.0
+msgpack-python==0.2.4

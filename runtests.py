@@ -7,10 +7,11 @@ from django.conf import settings
 if not settings.configured:
     settings.configure(
         DATABASES={
-	'default': {
-	    'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-        }},
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': ':memory:',
+            }
+        },
         INSTALLED_APPS=[
             'django.contrib.contenttypes',
             'django.contrib.sessions',
@@ -18,7 +19,7 @@ if not settings.configured:
             'django.contrib.messages',
             'ajaxtoolkit',
         ],
-        TEMPLATE_CONTEXT_PROCESSORS = (
+        TEMPLATE_CONTEXT_PROCESSORS=(
             "django.contrib.auth.context_processors.auth",
             "django.core.context_processors.request",
             "django.core.context_processors.debug",
@@ -41,12 +42,15 @@ if not settings.configured:
 
 from django.test.simple import DjangoTestSuiteRunner
 
+
 def runtests(*test_args):
     if not test_args:
         test_args = ['ajaxtoolkit']
     parent = dirname(abspath(__file__))
     sys.path.insert(0, parent)
-    failures = DjangoTestSuiteRunner().run_tests(test_args, verbosity=1, interactive='--no-input' not in sys.argv)
+    testrunner = DjangoTestSuiteRunner()
+    failures = testrunner.run_tests(test_args, verbosity=1,
+                                    interactive='--no-input' not in sys.argv)
     sys.exit(failures)
 
 if __name__ == '__main__':

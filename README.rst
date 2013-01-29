@@ -4,10 +4,11 @@ django-ajax-toolkit
 **Dependencies**
 
 * simplejson
+* msgpack-python
 
 
-Returning JSON in views
------------------------
+Returning data objects in views
+-------------------------------
 
 JsonResponse
 ~~~~~~~~~~~~
@@ -26,8 +27,22 @@ To make this easier you can use ``JsonResposne`` found in ``ajaxtoolkit.http``::
 
 This will set the correct mimetype (``application/json``) and serialise your context data into a json object.
 
-Ajax Middleware
+
+MsgpackResponse
 ~~~~~~~~~~~~~~~
+``MsgpackResponse`` works in a similar way to ``JsonResponse``, but uses msgpack to provide with binary serialisation.
+The usage is the same as with ``JsonResponse``::
+
+
+    def get(self, request, *args, **kwargs):
+        if request.is_ajax:
+            context = self.get_context_data()
+            return MsgpackResponse(context)
+        # ...
+
+
+Ajax Middleware
+---------------
 If you're using Django's messages framework, you can also add ``ajaxtoolkit.middleware.AjaxMiddleware`` in your
 middleware.
         
@@ -64,3 +79,22 @@ This would be rendered as the following::
     }
 
 
+Bypassing the message middleware
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to send an http response without attaching messages you can do that
+by setting the ``message_support`` attribute of the response object::
+
+    context = self.get_context_data()
+
+    response = JsonResponse(context)
+    response.message_support = False
+
+    return response
+
+You can also choose to subclass the original response classes, eg.::
+
+    class MsgpackResponseWithoutMessages(MsgpackResponse):
+        message_support = False
+
+    # ...

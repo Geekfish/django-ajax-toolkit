@@ -5,7 +5,7 @@ from django.contrib import messages
 
 class AjaxMiddleware(object):
     def process_template_response(self, request, response):
-        if request.is_ajax() and isinstance(response, JsonResponse):
+        if request.is_ajax() and getattr(response, 'message_support', False):
             django_messages = []
 
             for message in messages.get_messages(request):
