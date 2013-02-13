@@ -1,10 +1,6 @@
 django-ajax-toolkit
 ===================
 
-**Dependencies**
-
-* simplejson
-
 
 Returning JSON in views
 -----------------------

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='django-ajax-toolkit',
-      version='0.1',
+      version='0.1.1',
       url='https://github.com/Geekfish/django-ajax-toolkit',
       author="Eleni Lixourioti",
       author_email="contact@eleni.co",
@@ -12,9 +12,6 @@ setup(name='django-ajax-toolkit',
       platforms=['linux'],
       packages=('ajaxtoolkit',),
       include_package_data=True,
-      install_requires=[
-          'simplejson==2.5.2',
-          ],
       # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=['Environment :: Web Environment',
                    'Framework :: Django',
