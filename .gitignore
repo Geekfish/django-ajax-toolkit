@@ -6,8 +6,5 @@ local_settings.py
 dist
 docs.zip
 docs
-
-#PyCharm
-*.idea
-
+.idea
 .DS_Store

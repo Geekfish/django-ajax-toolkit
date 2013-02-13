@@ -1,7 +1,7 @@
 from django.http import HttpResponse
-import simplejson as json
 import msgpack
 
+from ajaxtoolkit.jsonwrapper import json
 
 class MessageInjectable(object):
     message_support = True

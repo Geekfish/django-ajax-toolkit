@@ -13,7 +13,6 @@ setup(name='django-ajax-toolkit',
       packages=('ajaxtoolkit',),
       include_package_data=True,
       install_requires=[
-          'simplejson==2.6.0',
           'msgpack-python==0.2.4',
           ],
       # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
