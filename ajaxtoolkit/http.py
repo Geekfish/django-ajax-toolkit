@@ -1,5 +1,5 @@
+import json
 from django.http import HttpResponse
-import simplejson as json
 
 class JsonResponse(HttpResponse):
     def __init__(self, dict_content=None, mimetype='application/json', status=None, content_type=None):
