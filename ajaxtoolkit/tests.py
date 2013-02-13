@@ -6,6 +6,7 @@ from django.http import HttpRequest
 from django.contrib import messages
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.contrib.messages.middleware import MessageMiddleware
+from django.utils import simplejson as json
 
 from hamcrest import *
 
@@ -15,6 +16,8 @@ from ajaxtoolkit.http import JsonResponse, MsgpackResponse
 
 class JsonResponseTests(TestCase):
     def test_response_rendering(self):
+	JsonResponse.ENCODER = json
+
         EXPECTED_CONTENT = '{"foo": "bar"}'
         EXPECTED_UNICODE_CONTENT = '{"foo": "\u03b5\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac"}'
 

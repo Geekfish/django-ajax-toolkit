@@ -17,9 +17,16 @@ class AbstractDictionaryResponse(HttpResponse, MessageInjectable):
             raise TypeError('The content argument must be a dictionary')
         super(AbstractDictionaryResponse, self).__init__('', mimetype, status, content_type)
 
+    def pre_encoding(self):
+        pass
+
+    def post_encoding(self):
+        pass
 
     def render(self):
+        self.pre_encoding()
         self.content = self.ENCODER.dumps(self.dict_content)
+        self.post_encoding()
         return self
 
 
