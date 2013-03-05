@@ -48,6 +48,10 @@ class MsgpackResponseTest(TestCase):
         response.render()
         assert_that(response.content, is_(EXPECTED_UNICODE_CONTENT))
 
+    def test_content_type(self):
+        response = MsgpackResponse({})
+        self.assertEqual('application/x-msgpack', response['Content-Type'])
+
 
 class AjaxMiddlewareTests(TestCase):
     def assert_django_messages_present(self, message, request, response):
