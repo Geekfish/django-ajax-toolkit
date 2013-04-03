@@ -13,7 +13,7 @@ setup(name='django-ajax-toolkit',
       packages=('ajaxtoolkit',),
       include_package_data=True,
       install_requires=[
-          'msgpack-python==0.2.4',
+          'msgpack-python==0.3.0',
       ],
       # See http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=['Environment :: Web Environment',

@@ -3,12 +3,24 @@ django-ajax-toolkit
 
 **Dependencies**
 
-* msgpack-python
+* msgpack-python>=0.2.4
+* django>=1.3
 
 
 **CI status (Travis)**
 
 .. image:: https://api.travis-ci.org/Geekfish/django-ajax-toolkit.png?branch=master,release/0.1,release/0.2
+
+Installation
+------------
+
+Grab it from pypi with::
+
+    pip install django-ajax-toolkit
+
+or::
+
+    easy_install django-ajax-toolkit
 
 
 Returning data objects in views
