@@ -11,7 +11,9 @@ class AbstractDictionaryResponse(HttpResponse, MessageInjectable):
     MIMETYPE = None
     ENCODER = None
 
-    def __init__(self, dict_content=None, mimetype=MIMETYPE, status=None, content_type=None):
+    def __init__(self, dict_content=None, mimetype=None, status=None, content_type=None):
+        if mimetype is None:
+            mimetype = self.MIMETYPE
         self.dict_content = dict_content if dict_content else {}
         if type(self.dict_content) is not dict:
             raise TypeError('The content argument must be a dictionary')

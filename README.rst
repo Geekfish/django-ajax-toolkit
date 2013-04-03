@@ -114,3 +114,15 @@ You can also choose to subclass the original response classes, eg.::
         message_support = False
 
     # ...
+
+
+Contribute
+==========
+
+Clone, create a virtualenv and run::
+
+    make install
+
+This will install all dependencies.  You can then run the tests with::
+
+    ./runtests.py

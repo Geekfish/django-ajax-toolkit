@@ -15,8 +15,9 @@ from ajaxtoolkit.http import JsonResponse, MsgpackResponse
 
 
 class JsonResponseTests(TestCase):
+
     def test_response_rendering(self):
-	JsonResponse.ENCODER = json
+        JsonResponse.ENCODER = json
 
         EXPECTED_CONTENT = '{"foo": "bar"}'
         EXPECTED_UNICODE_CONTENT = '{"foo": "\u03b5\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac"}'
@@ -28,6 +29,10 @@ class JsonResponseTests(TestCase):
         response = JsonResponse({'foo': u'ελληνικά'})
         response.render()
         assert_that(response.content, is_(EXPECTED_UNICODE_CONTENT))
+
+    def test_content_type(self):
+        response = JsonResponse({})
+        self.assertEqual('application/json', response['Content-Type'])
 
 
 class MsgpackResponseTest(TestCase):
@@ -42,6 +47,10 @@ class MsgpackResponseTest(TestCase):
         response = MsgpackResponse({'foo': u'ελληνικά'})
         response.render()
         assert_that(response.content, is_(EXPECTED_UNICODE_CONTENT))
+
+    def test_content_type(self):
+        response = MsgpackResponse({})
+        self.assertEqual('application/x-msgpack', response['Content-Type'])
 
 
 class AjaxMiddlewareTests(TestCase):
