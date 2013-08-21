@@ -77,3 +77,10 @@ class AjaxMiddlewareTests(TestCase):
 
         response = MsgpackResponse()
         self.assert_django_messages_present(message, request, response)
+
+    def assertHttp404Fires():
+        from django.views.generic.base import View
+        from django.http import Http404
+        class Http404View(View):
+            def dispatch(self, request, *args, **kwargs):
+                raise Http404

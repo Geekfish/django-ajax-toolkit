@@ -15,8 +15,8 @@ class AbstractDictionaryResponse(HttpResponse, MessageInjectable):
         if mimetype is None:
             mimetype = self.MIMETYPE
         self.dict_content = dict_content if dict_content else {}
-        if type(self.dict_content) is not dict:
-            raise TypeError('The content argument must be a dictionary')
+        if not isinstance(self.dict_content, dict):
+            raise TypeError('The content argument must be or subclass dict type')
         super(AbstractDictionaryResponse, self).__init__('', mimetype, status, content_type)
 
     def pre_encoding(self):
