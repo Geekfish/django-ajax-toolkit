@@ -1,4 +1,6 @@
 # coding=UTF-8
+import json
+from hamcrest import *
 
 from django.test import TestCase
 from django.http import HttpRequest
@@ -6,18 +8,32 @@ from django.http import HttpRequest
 from django.contrib import messages
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.contrib.messages.middleware import MessageMiddleware
-from django.utils import simplejson as json
-
-from hamcrest import *
 
 from ajaxtoolkit.middleware import AjaxMiddleware
 from ajaxtoolkit.http import JsonResponse, MsgpackResponse
 
 
-class SerializableResponseTests(TestCase):
+class SerializableResponseTest(TestCase):
+    def test_default(self):
+        class ResponseWithDefault(JsonResponse):
+            default = {'result': 'default result'}
+
+        class ResponseWithoutDefault(JsonResponse):
+            pass
+
+        response = ResponseWithDefault()
+        response.render()
+        assert_that(response.content, is_('{"result": "default result"}'))
+
+        response = ResponseWithoutDefault()
+        response.render()
+        assert_that(response.content, is_("null"))
+
+
+class JsonResponseTests(TestCase):
 
     def test_response_rendering(self):
-        JsonResponse.ENCODER = json
+        JsonResponse.encoder = json
 
         EXPECTED_CONTENT = '{"foo": "bar"}'
         EXPECTED_UNICODE_CONTENT = '{"foo": "\u03b5\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac"}'
@@ -33,6 +49,11 @@ class SerializableResponseTests(TestCase):
     def test_content_type(self):
         response = JsonResponse({})
         self.assertEqual('application/json', response['Content-Type'])
+
+    def test_list_content(self):
+        response = JsonResponse([1,2,3])
+        response.render()
+        assert_that(response.content, is_("[1, 2, 3]"))
 
 
 class MsgpackResponseTest(TestCase):
@@ -58,9 +79,9 @@ class AjaxMiddlewareTests(TestCase):
         middleware = AjaxMiddleware()
         processed_response = middleware.process_template_response(request,
                                                                   response)
-        assert_that(processed_response.dict_content,
+        assert_that(processed_response.serializable_content,
                     has_key("django_messages"))
-        assert_that(processed_response.dict_content["django_messages"][0],
+        assert_that(processed_response.serializable_content["django_messages"][0],
                     has_entry("message", equal_to(message)))
 
     def test_middleware_appends_messages(self):
@@ -72,8 +93,8 @@ class AjaxMiddlewareTests(TestCase):
         message = "Hello. Yes. This is dog"
         messages.info(request, message)
 
-        response = JsonResponse()
+        response = JsonResponse({})
         self.assert_django_messages_present(message, request, response)
 
-        response = MsgpackResponse()
+        response = MsgpackResponse({})
         self.assert_django_messages_present(message, request, response)

@@ -3,7 +3,13 @@ from django.contrib import messages
 
 class AjaxMiddleware(object):
     def process_template_response(self, request, response):
-        if request.is_ajax() and getattr(response, 'message_support', False):
+        should_append_messages = all((
+            request.is_ajax(),
+            getattr(response, 'message_support', False),
+            hasattr(response, 'serializable_content')
+            and isinstance(response.serializable_content, dict),
+        ))
+        if should_append_messages:
             django_messages = []
 
             for message in messages.get_messages(request):
@@ -11,6 +17,6 @@ class AjaxMiddleware(object):
                     "level": message.level,
                     "message": unicode(message.message),
                     "extra_tags": message.tags,
-                    })
-            response.dict_content['django_messages'] = django_messages
+                })
+            response.serializable_content['django_messages'] = django_messages
         return response

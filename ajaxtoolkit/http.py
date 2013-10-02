@@ -3,21 +3,21 @@ import msgpack
 
 from ajaxtoolkit.jsonwrapper import json
 
+
 class MessageInjectable(object):
     message_support = True
 
 
-class AbstractDictionaryResponse(HttpResponse, MessageInjectable):
-    MIMETYPE = None
-    ENCODER = None
+class AbstractSerializableResponse(HttpResponse, MessageInjectable):
+    mimetype = None
+    encoder = None
+    default = None
 
-    def __init__(self, dict_content=None, mimetype=None, status=None, content_type=None):
+    def __init__(self, serializable_content=None, mimetype=None, status=None, content_type=None):
         if mimetype is None:
-            mimetype = self.MIMETYPE
-        self.dict_content = dict_content if dict_content else {}
-        if not isinstance(self.dict_content, dict):
-            raise TypeError('The content argument must be or subclass dict type')
-        super(AbstractDictionaryResponse, self).__init__('', mimetype, status, content_type)
+            mimetype = self.mimetype
+        self.serializable_content = serializable_content if serializable_content is not None else self.default
+        super(AbstractSerializableResponse, self).__init__('', mimetype, status, content_type)
 
     def pre_encoding(self):
         pass
@@ -27,16 +27,16 @@ class AbstractDictionaryResponse(HttpResponse, MessageInjectable):
 
     def render(self):
         self.pre_encoding()
-        self.content = self.ENCODER.dumps(self.dict_content)
+        self.content = self.encoder.dumps(self.serializable_content)
         self.post_encoding()
         return self
 
 
-class JsonResponse(AbstractDictionaryResponse):
-    MIMETYPE = 'application/json'
-    ENCODER = json
+class JsonResponse(AbstractSerializableResponse):
+    mimetype = 'application/json'
+    encoder = json
 
 
-class MsgpackResponse(AbstractDictionaryResponse):
-    MIMETYPE = 'application/x-msgpack'
-    ENCODER = msgpack
+class MsgpackResponse(AbstractSerializableResponse):
+    mimetype = 'application/x-msgpack'
+    encoder = msgpack
