@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='django-ajax-toolkit',
-      version='0.2.2',
+      version='0.3.0',
       url='https://github.com/Geekfish/django-ajax-toolkit',
       author="Eleni Lixourioti",
       author_email="contact@eleni.co",
