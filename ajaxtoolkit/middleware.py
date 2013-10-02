@@ -1,5 +1,3 @@
-from ajaxtoolkit.http import JsonResponse
-
 from django.contrib import messages
 
 
@@ -16,4 +14,3 @@ class AjaxMiddleware(object):
                     })
             response.dict_content['django_messages'] = django_messages
         return response
-
