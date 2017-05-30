@@ -1,3 +1,12 @@
+[PROJECT DEPRECATED]
+====================
+
+This project is old and deprecated. Instead, I recommend using `Django Rest Framework <https://github.com/encode/django-rest-framework/>`_ which is a mature, well supported and well documented project.
+
+
+----
+
+
 django-ajax-toolkit
 ===================
 
